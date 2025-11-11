@@ -355,11 +355,11 @@ else
 fi
 
 echo -e "5. Download required files from CDN. "
-curl -fsSL https://raw.githubusercontent.com/younes101020/delivery/refs/heads/main/compose.prod.yaml -o /data/delivery/source/compose.prod.yaml
+curl -fsSL http://deliveryinstallresources.younesfakallah.com/compose.prod.yaml -o /data/delivery/source/compose.prod.yaml
 curl -fsSL https://raw.githubusercontent.com/younes101020/delivery/refs/heads/main/infrastructure/traefik-config/acme.json -o /data/delivery/source/infrastructure/traefik-config/acme.json || true
-curl -fsSL https://raw.githubusercontent.com/younes101020/delivery/refs/heads/main/infrastructure/traefik-config/dynamic.yaml -o /data/delivery/source/infrastructure/traefik-config/dynamic.yaml
-curl -fsSL https://raw.githubusercontent.com/younes101020/delivery/refs/heads/main/infrastructure/traefik-config/traefik.yaml -o /data/delivery/source/infrastructure/traefik-config/traefik.yaml
-curl -fsSL https://raw.githubusercontent.com/younes101020/delivery/refs/heads/main/.env.production -o /data/delivery/source/.env.production
+curl -fsSL http://deliveryinstallresources.younesfakallah.com/dynamic.yaml -o /data/delivery/source/infrastructure/traefik-config/dynamic.yaml
+curl -fsSL http://deliveryinstallresources.younesfakallah.com/traefik.yaml -o /data/delivery/source/infrastructure/traefik-config/traefik.yaml
+curl -fsSL http://deliveryinstallresources.younesfakallah.com/env.production -o /data/delivery/source/.env.production
 
 chmod 600 /data/delivery/source/infrastructure/traefik-config/acme.json || true
 
