@@ -10,8 +10,6 @@ DATE=$(date +"%Y%m%d-%H%M%S")
 VERSION="1.6"
 DOCKER_VERSION="27.0.3"
 CURRENT_USER=$USER
-DELIVERY_SERVICES=("delivery_bull_queue" "delivery_database" "delivery_jobs" "delivery_traefik", "delivery_web")
-DELIVERY_SERVICES_HEALTH_CHECK_INTERVAL=30
 
 TOTAL_SPACE=$(df -BG / | awk 'NR==2 {print $2}' | sed 's/G//')
 AVAILABLE_SPACE=$(df -BG / | awk 'NR==2 {print $4}' | sed 's/G//')
@@ -451,22 +449,6 @@ echo -e "11. Starting delivery service."
 
 docker network create --driver overlay --attachable proxy
 env $(grep -v '^#' /data/delivery/source/.env | xargs) docker stack deploy -c /data/delivery/source/compose.prod.yaml delivery
-
-while true; do
-    all_up=true
-    
-    for SERVICE in "${DELIVERY_SERVICES[@]}"; do
-        if ! docker service ps "$SERVICE" --filter "desired-state=running" | grep -q "Running"; then
-            all_up=false
-        fi
-    done
-    
-    if [ "$all_up" = true ]; then
-        break
-    fi
-    
-    sleep "$DELIVERY_SERVICES_HEALTH_CHECK_INTERVAL"
-done
 
 echo -e "\033[0;33m
    ____                            _         _       _   _                 _
