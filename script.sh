@@ -359,7 +359,8 @@ curl -fsSL http://deliveryinstallresources.younesfakallah.com/dynamic.yaml -o /d
 curl -fsSL http://deliveryinstallresources.younesfakallah.com/traefik.yaml -o /data/delivery/source/infrastructure/traefik-config/traefik.yaml
 curl -fsSL http://deliveryinstallresources.younesfakallah.com/env.production -o /data/delivery/source/.env.production
 
-#chmod 600 /data/delivery/source/infrastructure/traefik-config/acme.json || true
+touch /data/delivery/source/infrastructure/traefik-config/acme.json
+chmod 600 /data/delivery/source/infrastructure/traefik-config/acme.json
 
 echo -e "6. Make backup of .env to .env-$DATE"
 
