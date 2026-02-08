@@ -440,7 +440,9 @@ chmod -R 700 /data/delivery
 
 echo -e "9. Installing image builder."
 
-curl -sSL https://nixpacks.com/install.sh | bash >/dev/null 2>&1
+curl -sSL https://railpack.com/install.sh | sh >/dev/null 2>&1
+docker run --rm --privileged -d --name buildkit moby/buildkit >/dev/null 2>&1
+export BUILDKIT_HOST='docker-container://buildkit' >/dev/null 2>&1
 
 echo -e "10. Enabling Docker Swarm mode."
 
