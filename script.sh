@@ -443,7 +443,7 @@ echo -e "9. Installing image builder."
 curl -sSL https://railpack.com/install.sh | sh >/dev/null 2>&1
 docker run --rm --privileged -d --name buildkit moby/buildkit >/dev/null 2>&1
 export BUILDKIT_HOST='docker-container://buildkit' >/dev/null 2>&1
-docker buildx create --use --name builder-containerd --driver docker-container >/dev/null 2>&1
+docker buildx create --use --name builder-containerd --driver docker-container 2>/dev/null || true
 
 echo -e "10. Enabling Docker Swarm mode."
 
