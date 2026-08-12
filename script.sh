@@ -464,3 +464,4 @@ echo -e "\033[0;33m
 \033[0m"
 
 echo -e "\033[0;34mgo to https://$PUBLIC_IP.sslip.io\033[0m"
+echo -e "It should take a few minutes before the app is accessible."
